@@ -5,6 +5,12 @@ from django.contrib.auth.models import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from .models import PhotoGallery,PhotoCategory
+from django.views import View
+
+
+class Home(View):
+    def get(self,request,*args,**kwargs):
+        return HttpResponse('Hello Worlds')
 
 # Create your views here.
 @login_required(login_url='login')

@@ -17,6 +17,7 @@ static/
 # Media files (user-uploaded content)
 
 
+
 # Virtual environment
 venv/
 venv.bak/

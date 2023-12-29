@@ -13,7 +13,7 @@ class PhotoCategory(models.Model):
 class PhotoGallery(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     title=models.CharField(max_length=30)
-    photo=models.ImageField(upload_to='photos/')
+    photo=models.ImageField(upload_to='photos/',null=True)
     description=models.TextField(max_length=2000)
     category=models.ForeignKey(PhotoCategory,on_delete=models.CASCADE)
     
