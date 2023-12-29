@@ -4,14 +4,22 @@ from django.http import HttpResponse
 from django.contrib.auth.models import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
-from .models import PhotoGallery
+from .models import PhotoGallery,PhotoCategory
 
 # Create your views here.
 @login_required(login_url='login')
 def index(request):
-    photos=PhotoGallery.objects.filter(user=request.user)
+    category=request.GET.get('category')
+    categories=PhotoCategory.objects.all()
+    
+    if category is not None:
+        photos=PhotoGallery.objects.filter(user=request.user,category__category__exact=category)
+    elif category is None:
+        photos=PhotoGallery.objects.filter(user=request.user)
+        
     context={
-        'photos':photos
+        'photos':photos,
+        'categories':categories
     }
     return render(request,"index.html",context)
 
